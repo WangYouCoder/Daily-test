@@ -1,0 +1,22 @@
+struct ListNode* FindKthToTail(struct ListNode* pListHead, int k ) {
+    if(pListHead == NULL || k == 0)
+    {
+        return NULL;
+    }
+    struct ListNode* slow = pListHead;
+    struct ListNode* fast = pListHead;
+    while(--k)
+    {
+        fast = fast->next;
+        if(fast == NULL)
+        {
+            return NULL;
+        }
+    }
+    while(fast->next)
+    {
+        fast = fast->next;
+        slow = slow->next;
+    }
+    return slow;
+}
