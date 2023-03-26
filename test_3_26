@@ -1,0 +1,101 @@
+struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2){
+    if(list1 == NULL)
+    {
+        return list2;
+    }
+    if(list2 == NULL)
+    {
+        return list1;
+    }
+//处理第一个结点
+    struct ListNode* newhead = NULL;
+        if(list1->val<list2->val)
+        {
+            newhead = list1;
+            list1 = list1->next;
+        }
+        else
+        {
+            newhead = list2;
+            list2 = list2->next;
+        }
+        //处理后续结点
+        struct ListNode* cur = newhead;
+        while(list1 && list2)
+        {
+            if(list1->val<list2->val)
+            {
+                cur->next = list1;
+                list1 = list1->next;
+                cur = cur->next;
+            }
+            else
+            {
+                cur ->next = list2;
+                list2 = list2->next;
+                cur = cur->next;
+            }
+        }
+        if(list1)
+        {
+            cur->next = list1;
+        }
+        if(list2)
+        {
+            cur->next = list2;
+        }
+        return newhead;
+}
+
+
+方法二：
+if(list1 == NULL)
+    {
+        return list2;
+    }
+    if(list2 == NULL)
+    {
+        return list1;
+    }
+//     struct ListNode* head = NULL,*tail = NULL;
+//     while(list1 && list2)
+//     {
+//         if(list1->val<list2->val)
+//         {
+//             if(head == NULL)
+//             {
+//                 head = list1;
+//                 tail = list1;
+//             }
+//             else
+//             {
+//                 tail->next = list1;
+//                 tail = tail->next;
+//             }
+//             list1 = list1->next;
+//         }
+//         else
+//         {
+//             if(head == NULL)
+//             {
+//                 head = list2;
+//                 tail = list2;
+//             }
+//             else
+//             {
+//                 tail->next = list2;
+//                 tail = tail->next;
+//             }
+//             list2 = list2->next;
+//         }
+//     }
+//     if(list1)
+//         {
+//             tail->next = list1;
+//         }
+//         if(list2)
+//         {
+//             tail->next = list2;
+//         }
+//     return head;
+// }
