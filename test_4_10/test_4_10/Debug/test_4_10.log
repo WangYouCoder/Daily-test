@@ -1,0 +1,4 @@
+﻿  test.c
+D:\c\test_4_10\test_4_10\test.c(74,16): warning C4098: “rotate”:“void”函数返回值
+D:\c\test_4_10\test_4_10\test.c(80,15): warning C4133: “函数”: 从“int [7]”到“const char *const ”的类型不兼容
+  test_4_10.vcxproj -> D:\c\test_4_10\Debug\test_4_10.exe
