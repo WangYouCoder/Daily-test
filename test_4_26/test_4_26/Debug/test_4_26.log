@@ -1,0 +1,4 @@
+﻿  test.c
+D:\c\test_4_26\test_4_26\test.c(28,19): warning C4244: “return”: 从“__int64”转换到“int”，可能丢失数据
+D:\c\test_4_26\test_4_26\test.c(35,11): warning C4477: “scanf”: 格式字符串“%d”需要类型“int *”的参数，但可变参数 1 拥有了类型“int”
+  test_4_26.vcxproj -> D:\c\test_4_26\Debug\test_4_26.exe
