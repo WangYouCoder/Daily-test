@@ -1,0 +1,3 @@
+﻿  test.cpp
+D:\c\test_4_30\test_4_30\test.cpp(148,23): warning C4838: 从“int”转换到“SHORT”需要收缩转换
+  test_4_30.vcxproj -> D:\c\test_4_30\Debug\test_4_30.exe
