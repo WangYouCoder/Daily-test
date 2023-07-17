@@ -1,0 +1,7 @@
+﻿  test.cpp
+D:\c\test_7_17\test_7_17\test.cpp(117,17): error C2373: “p”: 重定义；不同的类型修饰符
+D:\c\test_7_17\test_7_17\test.cpp(115): message : 参见“p”的声明
+D:\c\test_7_17\test_7_17\test.cpp(119,30): error C2440: “初始化”: 无法从“const int *”转换为“int *const ”
+D:\c\test_7_17\test_7_17\test.cpp(119,26): message : 转换丢失限定符
+D:\c\test_7_17\test_7_17\test.cpp(119,26): error C2131: 表达式的计算结果不是常数
+D:\c\test_7_17\test_7_17\test.cpp(119,26): message : 遇到非常量(子)表达式
