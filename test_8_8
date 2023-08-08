@@ -1,0 +1,20 @@
+int _isBalanced(struct TreeNode* root)
+{
+    if(root == NULL)
+        return 0;
+
+    int left = _isBalanced(root->left);
+    int right = _isBalanced(root->right);
+
+    return left > right ? left + 1 : right + 1;
+}
+
+bool isBalanced(struct TreeNode* root){
+    if(root == NULL)
+        return true;
+    
+    int left = _isBalanced(root->left);
+    int right = _isBalanced(root->right);
+
+    return fabs(left - right)<= 1 && isBalanced(root->left) && isBalanced(root->right);
+}
