@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include<stdlib.h>
+typedef char DataType;
+struct Tree
+{
+    DataType val;
+    struct Tree* left;
+    struct Tree* right;
+};
+
+struct Tree* BuyNode(DataType x)
+{
+    struct Tree* T = (struct Tree*)malloc(sizeof(struct Tree));
+    if(T == NULL)
+        return NULL;
+    T->val = x;
+    T->left = NULL;
+    T->right = NULL;
+
+    return T;
+}
+
+struct Tree* BTCreat(DataType* str,int* i)
+{
+    if(str[*i] == '#')
+    {
+        (*i)++;
+        return NULL;
+    }
+
+    struct Tree* root = BuyNode(str[(*i)++]);
+    root->left = BTCreat(str,i);
+    root->right = BTCreat(str,i);
+
+    return root;
+}
+
+void Inorder(struct Tree* root)
+{
+    if(root == NULL)
+        return ;
+
+    Inorder(root->left);
+    printf("%c ",root->val);
+    Inorder(root->right);
+}
+
+int main() {
+    char arr[101];
+    while(scanf("%s",arr) != EOF)
+    {
+        int k = 0;
+        struct Tree* root = BTCreat(arr,&k);
+        Inorder(root);
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bool _isSymmetric(struct TreeNode* p,struct TreeNode* q)
+{
+    if(p == NULL && q == NULL)
+        return true;
+
+    if(p == NULL || q == NULL)
+        return false;
+
+    if(p->val != q->val)
+        return false;
+
+    return _isSymmetric(p->left,q->left) 
+        && _isSymmetric(p->right,q->right);
+}
+
+bool isSubtree(struct TreeNode* root, struct TreeNode* subRoot){
+    if(root == NULL)
+        return false;
+
+    if(_isSymmetric(root,subRoot))
+        return true;
+
+    return isSubtree(root->left,subRoot) || isSubtree(root->right,subRoot);
+}
