@@ -1,0 +1,402 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+void Swap(int* x, int *y)
+{
+    int tmp = *x;
+    *x = *y;
+    *y = tmp;
+}
+
+// int* sortArray(int* nums, int numsSize, int* returnSize){
+//     *returnSize = numsSize;
+//     if(numsSize <= 1)
+//         return;
+
+
+//     return nums;
+// }
+
+ //插入排序
+// int* sortArray(int* nums, int numsSize, int* returnSize){
+//     *returnSize = numsSize;
+//     if(numsSize <= 1)
+//         return;
+    
+//     for(int i = 0; i<numsSize - 1; i++)
+//     {
+//         int end = i;
+//         int tmp = nums[end + 1];
+//         while(end >= 0)
+//         {
+//             if(nums[end] > tmp)
+//             {
+//                 nums[end + 1] = nums[end];
+//                 end--;
+//             }
+//             else
+//             {
+//                 break;
+//             }
+//         }
+//         nums[end + 1] = tmp;
+//     }
+//     return nums;
+// }
+
+//希尔排序
+// int* sortArray(int* nums, int numsSize, int* returnSize){
+//     *returnSize = numsSize;
+//     if(numsSize <= 1)
+//         return;
+    
+//     int gap = numsSize / 2;
+//     // while(gap >= 1)
+//     // {
+//     //     for(int j = 0;j<gap; j++)
+//     //     {
+//     //         for(int i = j;i<numsSize - gap; i += gap)
+//     //         {
+//     //             int end = i;
+//     //             int tmp = nums[end + gap];
+
+//     //             while(end >= 0)
+//     //             {
+//     //                 if(nums[end] > tmp)
+//     //                 {
+//     //                     nums[end + gap] = nums[end];
+//     //                     end -= gap;
+//     //                 }
+//     //                 else
+//     //                 {
+//     //                     break;
+//     //                 }
+//     //             }
+//     //             nums[end + gap] = tmp;
+//     //         }
+//     //     }
+//     //     gap /= 2;
+//     // }
+
+//         while(gap >= 1)
+//     {
+
+//             for(int i = 0;i<numsSize - gap; i++)
+//             {
+//                 int end = i;
+//                 int tmp = nums[end + gap];
+
+//                 while(end >= 0)
+//                 {
+//                     if(nums[end] > tmp)
+//                     {
+//                         nums[end + gap] = nums[end];
+//                         end -= gap;
+//                     }
+//                     else
+//                     {
+//                         break;
+//                     }
+//                 }
+//                 nums[end + gap] = tmp;
+//             }
+
+//         gap /= 2;
+//     }
+
+//     return nums;
+// }
+
+//选择排序
+// int* sortArray(int* nums, int numsSize, int* returnSize){
+//     *returnSize = numsSize;
+//     if(numsSize <= 1)
+//         return nums;
+
+//     int end = numsSize - 1;
+//     int begin = 0;
+//     while(begin < end)
+//     {
+//         int mini = begin,maxi = end;
+//         for(int i = begin; i <= end; i++)
+//         {
+//             if(nums[i] < nums[mini])
+//                 mini = i;
+
+//             if(nums[i] > nums[maxi])
+//                 maxi = i;
+//         }
+//         Swap(&nums[mini],&nums[begin]);
+
+//         if(begin == maxi)
+//             maxi = mini;
+//         Swap(&nums[maxi],&nums[end]);
+
+//         begin++;
+//         end--;
+//     }
+
+//     return nums;
+// }
+
+//堆排序
+
+//向下调整
+// void AdjustDown(int* a,int size,int parent)
+// {
+//     int child = (parent * 2) + 1;
+//     while(child < size)
+//     {
+//         if(child + 1 < size && a[child] < a[child + 1])
+//         {
+//             child = child + 1;
+//         }
+
+//         if(a[child] > a[parent])
+//         {
+//             Swap(&a[child],&a[parent]);
+//             parent = child;
+//             child = (parent * 2) + 1;
+//         }
+//         else
+//         {
+//             break;
+//         }
+//     }
+// }
+
+// int* sortArray(int* nums, int numsSize, int* returnSize){
+//     *returnSize = numsSize;
+//     if(numsSize <= 1)
+//         return nums;
+
+//     for(int i = (numsSize - 1 - 1) / 2;i >= 0; i--)
+//     {
+//         AdjustDown(nums,numsSize,i);
+//     }
+
+//     int end = numsSize - 1;
+//     while(end >= 0)
+//     {
+//         Swap(&nums[0],&nums[end]);
+//         AdjustDown(nums,end,0);
+//         end--;
+//     }
+    
+//     return nums;
+// }
+
+//快速排序
+
+int GetMidIndex(int* a, int left, int right)
+{
+	int mid = (left + right) / 2;
+	if (a[left] > a[mid])
+	{
+		if (a[mid] > a[right])
+		{
+			return mid;
+		}
+		else if(a[left] < a[right])
+		{
+			return left;
+		}
+		else
+		{
+			return right;
+		}
+	}
+	else  //a[left] < a[mid]
+	{
+		if (a[right] < a[left])
+		{
+			return left;
+		}
+		else if (a[right] > a[mid])
+		{
+			return mid;
+		}
+		else
+		{
+			return right;
+		}
+	}
+}
+
+// int Partion1(int* a,int left,int right)
+// {
+//     int min = GetMidIndex(a, left, right);
+// 	   Swap(&a[left], &a[min]);
+    
+//     int keyi = left;
+//     while(left < right)
+//     {
+//         while(left < right && a[right] >= a[keyi])
+//         {
+//             right--;
+//         }
+
+//         while(left < right && a[left] <= a[keyi])
+//         {
+//             left++;
+//         }
+//         Swap(&a[left],&a[right]);
+//     }
+//     Swap(&a[keyi],&a[left]);
+//     return left;
+// }
+
+// //挖坑法
+// int Partion2(int* a,int left, int right)
+// {
+//     int min = GetMidIndex(a,left,right);
+//     Swap(&a[min],&a[left]);
+
+//     int pivot = left;
+//     int key = a[left];
+//     while(left < right)
+//     {
+//         while(left < right && a[right] >= a[pivot])
+//         {
+//             right--;
+//         }
+//         Swap(&a[pivot],&a[right]);
+//         // a[pivot] = a[right];
+//         pivot = right;
+
+//         while(left < right && a[left] <= a[pivot])
+//         {
+//             left++;
+//         }
+//         Swap(&a[pivot],&a[left]);
+//         //a[pivot] = a[left];
+//         pivot = left;
+//     }
+//     a[pivot] = key;
+//     return pivot;
+// }
+
+//指针法
+int Partion3(int* a,int left,int right)
+{
+    int mini = GetMidIndex(a,left,right);
+    Swap(&a[mini],&a[left]);
+    int keyi = left;
+
+    int cur = left + 1;
+    int prev = left;
+    
+    while(cur <= right)
+    {
+        if(a[cur] < a[keyi])
+        {
+            Swap(&a[cur],&a[++prev]);
+            cur++;
+        }
+        else
+        {
+            cur++;
+        }
+    }
+    Swap(&a[keyi],&a[prev]);
+    return prev;
+}
+
+void QuickSort(int* a,int left, int right)
+{
+    if(left >= right)
+        return;
+    
+    int keyi = Partion3(a,left,right);
+    QuickSort(a,left,keyi - 1);
+    QuickSort(a,keyi + 1,right);
+}
+
+void _MergeSort(int* a,int left,int right,int* tmp)
+{
+    if(left >= right)
+        return;
+
+    int mid = (left + right) / 2;
+    _MergeSort(a,left,mid,tmp);
+    _MergeSort(a,mid + 1,right,tmp);
+
+    int begin1 = left,end1 = mid;
+    int begin2 = mid + 1,end2 = right;
+    int i = left;
+    while(begin1 <= end1 && begin2 <= end2)
+    {
+        if(a[begin1] < a[begin2])
+        {
+            tmp[i++] = a[begin1++];
+        }
+        else
+        {
+            tmp[i++] = a[begin2++];
+        }
+    }
+
+    while(begin1 <= end1)
+    {
+        tmp[i++] = a[begin1++];
+    }
+
+    while(begin2 <= end2)
+    {
+        tmp[i++] = a[begin2++];
+    }
+
+    memcpy(a + left,tmp + left,sizeof(int)*(right - left + 1));
+}
+
+void MergeSort(int* a,int n)
+{
+    int* tmp = (int*)malloc(sizeof(int)*n);
+    _MergeSort(a,0,n - 1,tmp);
+
+    free(tmp);
+    tmp = NULL;
+}
+
+void CountSort(int* a,int n)
+{
+    int max = a[0],min = a[0];
+    for(int i = 0; i < n; i++)
+    {
+        if(a[i] > max)
+            max = a[i];
+
+        if(a[i] < min)
+            min = a[i];
+    }
+    int range = max - min + 1;
+
+    int* count = (int*)malloc(sizeof(int) * range);
+    memset(count, 0, sizeof(int) * range);
+    for(int i = 0; i < n; i++)
+    {
+        count[a[i] - min]++;
+    }
+
+    int j = 0;
+    for(int i = 0;i < range; i++)
+    {
+        while(count[i]--)
+        {
+            a[j++] = i + min;
+        }
+    }
+    free(count);
+    count = NULL;
+}
+
+int* sortArray(int* nums, int numsSize, int* returnSize){
+    *returnSize = numsSize;
+    if(numsSize <= 1)
+        return nums;
+
+    //QuickSort(nums,0,numsSize - 1);
+    //MergeSort(nums,numsSize);
+    //CountSort(nums,numsSize);
+    return nums;
+}
