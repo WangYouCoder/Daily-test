@@ -1,0 +1,39 @@
+class Solution {
+public:
+    void duplicateZeros(vector<int>& arr) {
+        // int cur = 0;
+        // while(cur < arr.size())
+        // {
+        //     if(arr[cur] != 0)
+        //     {
+        //         cur++;
+        //     }
+        //     else
+        //     {
+        //         int tail = arr.size() - 1;
+        //         while(tail > cur)
+        //         {
+        //             arr[tail] = arr[tail - 1];
+        //             tail--;
+        //         }
+        //         cur += 2;
+        //     }
+        // }
+
+                int cur = 0;
+        while(cur < arr.size())
+        {
+            if(arr[cur] == 0)
+            {
+                int tail = arr.size() - 1;
+                while(tail > cur)
+                {
+                    arr[tail] = arr[tail - 1];
+                    tail--;
+                }
+                cur++;
+            }
+            cur++;
+        }
+    }
+};
