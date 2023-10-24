@@ -1,0 +1,32 @@
+class Temp
+{
+public:
+    Temp()
+    {
+        N++;
+        num += N;
+    }
+
+    static int Getnum()
+    {
+        return num;
+    }
+
+    static int N;
+    static int num;
+};
+
+int Temp::N = 0;
+int Temp:: num = 0;
+
+class Solution {
+public:
+    int Sum_Solution(int n) 
+    {
+        Temp* tmp = new Temp[n];
+
+        delete[] tmp;
+        tmp = nullptr;
+        return Temp::Getnum(); 
+    }
+};
