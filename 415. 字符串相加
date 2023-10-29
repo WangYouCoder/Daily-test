@@ -1,0 +1,85 @@
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+        int len1 = num1.size() - 1;
+        int len2 = num2.size() - 1;
+        int next = 0;
+        string ret;
+
+        while(len1 >= 0 && len2 >= 0)
+        {
+            int sum = num1[len1] - '0' + num2[len2] - '0' + next;
+            if(sum > 9)
+            {
+                next = sum / 10;
+                sum %= 10;
+            }
+            else
+            {
+                next = 0;
+            }
+
+            ret += sum + '0';
+            --len1;
+            --len2;
+        }
+
+        if(len1 >= 0)
+        {
+            for(int i = len1; i >= 0; i--)
+            {
+                //判断是否有剩余进位
+                if(next == 1)
+                {
+                    //判断是否再次有进位
+                    if(num1[i] - '0' + 1 == 10)
+                    {
+                        ret += '0';
+                        next = 1;
+                    }
+                    else
+                    {
+                        ret += num1[i] + 1;
+                        next = 0;
+                    }
+                }
+                else
+                {
+                    ret += num1[i];
+                }
+            }
+        }
+
+        if(len2 >= 0)
+        {
+            for(int i = len2; i >= 0; i--)
+            {
+                if(next == 1)
+                {
+                    if(num2[i] - '0' + 1 == 10)
+                    {
+                        ret += '0';
+                        next = 1;
+                    }
+                    else
+                    {
+                        ret += num2[i] + 1;
+                        next = 0;
+                    }
+                }
+                else
+                {
+                    ret += num2[i];
+                }
+            }
+        }
+
+        if(next == 1)
+        {
+            ret += '1';
+        }
+
+        reverse(ret.begin(),ret.end());
+        return ret;
+    }
+};
