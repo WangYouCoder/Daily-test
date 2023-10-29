@@ -1,0 +1,28 @@
+class Solution {
+public:
+
+    int min(int a, int b)
+    {
+        return a > b ? b : a;
+    }
+
+    string reverseStr(string s, int k) 
+    {
+        string ret;
+
+        for(int i = 0; i < s.size(); i += k)
+        {
+            if((i / k) % 2 == 0)
+            {
+                reverse(s.begin() + i,s.begin() + min(i + k , s.size()));
+                ret.append(s.begin() + i,s.begin() + min(i + k , s.size()));
+            }
+            else
+            {
+                ret.append(s.begin() + i,s.begin() + min(i + k , s.size()));
+            }
+        }
+
+        return ret;
+    }
+};
